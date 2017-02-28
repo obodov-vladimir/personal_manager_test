@@ -14,8 +14,15 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url, include
-from django.contrib import admin
+from rest_framework import routers
+from finance import views
+
+router = routers.DefaultRouter()
+router.register(r'budget', views.IncomeViewSet)
+
 
 urlpatterns = [
-    url(r'^', include('finance.urls'))
+    url(r'^', include('finance.urls')),
+
+    # url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]
